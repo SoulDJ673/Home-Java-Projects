@@ -1,0 +1,2 @@
+# Home-Java-Projects
+Just random java exercises and projects that I do for fun in my free time
