@@ -14,19 +14,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.souldj673.terminal_customization.DateTime;
+package com.souldj673.terminal_customization.textintro;
 
-import com.souldj673.terminal_customization.DateTime.controller.DateTimeController;
-import com.souldj673.terminal_customization.DateTime.view.DateTimeView;
+import com.souldj673.terminal_customization.textintro.controller.TextIntroController;
+import com.souldj673.terminal_customization.textintro.dao.TextIntroDAO;
+import com.souldj673.terminal_customization.textintro.dao.TextIntroDAOImpl;
+import com.souldj673.terminal_customization.textintro.service.TextIntroService;
+import com.souldj673.terminal_customization.textintro.view.TextIntroView;
 
 /**
  *
  * @author souldj673
  */
-public class App {
+public class TextIntroApp {
 
-    private static final DateTimeView VIEW = new DateTimeView();
-    private static final DateTimeController CONTROLLER = new DateTimeController(VIEW);
+    private static final TextIntroView VIEW = new TextIntroView();
+    private static final TextIntroDAO DAO = new TextIntroDAOImpl("TextIntro.txt");
+    private static final TextIntroService SERVICE = new TextIntroService(DAO);
+    private static final TextIntroController CONTROLLER = new TextIntroController(VIEW, SERVICE);
 
     public static void main(String[] args) {
         CONTROLLER.run();

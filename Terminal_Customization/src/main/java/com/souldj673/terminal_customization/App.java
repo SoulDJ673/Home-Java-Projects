@@ -16,10 +16,17 @@
  */
 package com.souldj673.terminal_customization;
 
+import com.souldj673.terminal_customization.DateTime.DateTimeApp;
+import com.souldj673.terminal_customization.textintro.TextIntroApp;
+
 /**
  *
  * @author souldj673
  */
 public class App {
-    
+
+    public static void main(String[] args) {
+        DateTimeApp.main(args);
+        TextIntroApp.main(args);
+    }
 }

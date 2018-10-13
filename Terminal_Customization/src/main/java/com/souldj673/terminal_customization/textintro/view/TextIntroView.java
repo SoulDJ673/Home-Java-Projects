@@ -39,7 +39,7 @@ public class TextIntroView {
         } else {
             tokens.add(text);
         }
-        String decorTrim = decor.substring(0, (tokens.get(0).length() + 8));
+        String decorTrim = decor.substring(0, 80);
 
         System.out.println(decorTrim);
         for (String currentLine : tokens) {
@@ -51,8 +51,11 @@ public class TextIntroView {
                 System.out.println(centerText(currentLine, 2));
             }
         }
+        System.out.println(decorTrim);
     }
-
+/*
+    Need to actually get working, but low priority because of lack of use currently
+    
     public void displayText(List<String> stringList) {
         String decor = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
                 + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
@@ -70,7 +73,7 @@ public class TextIntroView {
             }
         }
     }
-
+*/
     private String centerText(String token, int type) {
         switch (type) {
             case 1:
