@@ -16,10 +16,32 @@
  */
 package com.souldj673.terminal_customization.textintro.service;
 
+import com.souldj673.terminal_customization.textintro.dao.TextIntroDAO;
+import java.io.FileNotFoundException;
+import java.util.List;
+
 /**
  *
  * @author souldj673
  */
 public class TextIntroService {
-    
+
+    TextIntroDAO dao;
+
+    public TextIntroService(TextIntroDAO dao) {
+        this.dao = dao;
+    }
+
+    public void loadTextIntroFile() throws FileNotFoundException {
+        dao.loadAllStrings();
+    }
+
+    public List<String> getStrings() {
+        return dao.getAllStrings();
+    }
+
+    public String getAString(int i) {
+        return dao.getAString(i);
+    }
+
 }

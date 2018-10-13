@@ -17,6 +17,9 @@
 package com.souldj673.terminal_customization.textintro;
 
 import com.souldj673.terminal_customization.textintro.controller.TextIntroController;
+import com.souldj673.terminal_customization.textintro.dao.TextIntroDAO;
+import com.souldj673.terminal_customization.textintro.dao.TextIntroDAOImpl;
+import com.souldj673.terminal_customization.textintro.service.TextIntroService;
 import com.souldj673.terminal_customization.textintro.view.TextIntroView;
 
 /**
@@ -26,7 +29,9 @@ import com.souldj673.terminal_customization.textintro.view.TextIntroView;
 public class App {
 
     private static final TextIntroView VIEW = new TextIntroView();
-    private static final TextIntroController CONTROLLER = new TextIntroController(VIEW);
+    private static final TextIntroDAO DAO = new TextIntroDAOImpl("/home/$USER/test.txt");
+    private static final TextIntroService SERVICE = new TextIntroService(DAO);
+    private static final TextIntroController CONTROLLER = new TextIntroController(VIEW, SERVICE);
 
     public static void main(String[] args) {
         CONTROLLER.run();
