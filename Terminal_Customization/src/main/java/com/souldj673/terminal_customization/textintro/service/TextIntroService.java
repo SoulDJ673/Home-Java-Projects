@@ -14,21 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.souldj673.terminal_customization.textintro;
-
-import com.souldj673.terminal_customization.textintro.controller.TextIntroController;
-import com.souldj673.terminal_customization.textintro.view.TextIntroView;
+package com.souldj673.terminal_customization.textintro.service;
 
 /**
  *
  * @author souldj673
  */
-public class App {
-
-    private static final TextIntroView VIEW = new TextIntroView();
-    private static final TextIntroController CONTROLLER = new TextIntroController(VIEW);
-
-    public static void main(String[] args) {
-        CONTROLLER.run();
-    }
+public class TextIntroService {
+    
 }
