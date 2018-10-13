@@ -44,7 +44,25 @@ public class TextIntroView {
         System.out.println(decorTrim);
         for (String currentLine : tokens) {
             if (currentLine.length() == 72) {
-                System.out.println(">>> " + tokens + " >>>");
+                System.out.println(">>> " + currentLine + " >>>");
+            } else if (currentLine.length() % 2 == 0) {
+                System.out.println(centerText(currentLine, 1));
+            } else {
+                System.out.println(centerText(currentLine, 2));
+            }
+        }
+    }
+
+    public void displayText(List<String> stringList) {
+        String decor = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+                + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+                + ">>>>>>>>>>>>>>>>";
+        String decorTrim = decor.substring(0, (stringList.get(0).length() + 8));
+
+        System.out.println(decorTrim);
+        for (String currentLine : stringList) {
+            if (currentLine.length() == 72) {
+                System.out.println(">>> " + currentLine + " >>>");
             } else if (currentLine.length() % 2 == 0) {
                 System.out.println(centerText(currentLine, 1));
             } else {

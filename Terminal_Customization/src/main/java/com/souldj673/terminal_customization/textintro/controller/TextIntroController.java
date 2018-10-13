@@ -34,7 +34,8 @@ public class TextIntroController {
     }
 
     public void run() {
-        view.displayText();
+        
+        view.displayText(service.getStrings());
     }
 
 }

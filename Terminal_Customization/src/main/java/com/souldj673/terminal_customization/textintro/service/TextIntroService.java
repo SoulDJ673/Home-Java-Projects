@@ -36,7 +36,11 @@ public class TextIntroService {
         dao.loadAllStrings();
     }
 
-    public List<String> getStrings() {
+    public String getStrings() {
+        return getConcatenatedString();
+    }
+    
+    public List<String> getStringList() {
         return dao.getAllStrings();
     }
 
@@ -44,4 +48,14 @@ public class TextIntroService {
         return dao.getAString(i);
     }
 
+    private String getConcatenatedString() {
+        List<String> allStrings = dao.getAllStrings();
+
+        String concatString = "";
+        for (String currentToken : allStrings) {
+            concatString = concatString + currentToken;
+        }
+
+        return concatString;
+    }
 }
