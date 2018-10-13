@@ -18,6 +18,7 @@ package com.souldj673.terminal_customization.textintro.controller;
 
 import com.souldj673.terminal_customization.textintro.service.TextIntroService;
 import com.souldj673.terminal_customization.textintro.view.TextIntroView;
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -34,7 +35,13 @@ public class TextIntroController {
     }
 
     public void run() {
-        
+
+        try {
+            service.loadTextIntroFile();
+        } catch (FileNotFoundException e) {
+            view.fileError();
+        }
+
         view.displayText(service.getStrings());
     }
 

@@ -29,7 +29,7 @@ import com.souldj673.terminal_customization.textintro.view.TextIntroView;
 public class App {
 
     private static final TextIntroView VIEW = new TextIntroView();
-    private static final TextIntroDAO DAO = new TextIntroDAOImpl("/home/$USER/test.txt");
+    private static final TextIntroDAO DAO = new TextIntroDAOImpl("TextIntro.txt");
     private static final TextIntroService SERVICE = new TextIntroService(DAO);
     private static final TextIntroController CONTROLLER = new TextIntroController(VIEW, SERVICE);
 

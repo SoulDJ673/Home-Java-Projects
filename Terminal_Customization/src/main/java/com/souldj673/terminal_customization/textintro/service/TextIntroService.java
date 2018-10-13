@@ -39,7 +39,7 @@ public class TextIntroService {
     public String getStrings() {
         return getConcatenatedString();
     }
-    
+
     public List<String> getStringList() {
         return dao.getAllStrings();
     }

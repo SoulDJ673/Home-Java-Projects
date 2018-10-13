@@ -91,4 +91,8 @@ public class TextIntroView {
                 return token;
         }
     }
+
+    public void fileError() {
+        System.out.println("Check to ensure the existance of the text file");
+    }
 }
