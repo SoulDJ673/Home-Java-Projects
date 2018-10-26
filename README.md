@@ -4,6 +4,6 @@
 | Date | Exercise Name |
 |:------:|:-------------------:|
 | 09/03/2018 | Random Sums exercise |
-| 09/18/2018 | Game (Idk yet) exercise |
+| 10/13/2018 | Terminal Customization |
 
 ##### Devin Lloyd - @souldj673
