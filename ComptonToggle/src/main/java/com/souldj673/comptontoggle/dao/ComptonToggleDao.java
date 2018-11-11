@@ -18,6 +18,7 @@ package com.souldj673.comptontoggle.dao;
 
 import com.souldj673.comptontoggle.dto.RunningProcess;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,13 +33,15 @@ public interface ComptonToggleDao {
     /**
      * This will be used to load the process list into memory, stripping
      * unneeded information
+     * @throws java.io.FileNotFoundException
      */
     public void loadFromFile() throws FileNotFoundException;
 
     /**
      * This will be used to write the stop cmd to a file (with compton pid)
+     * @throws java.io.IOException
      */
-    public void writeToFile();
+    public void writeToFile(String command) throws IOException;
 
     /**
      * This will be used to read keys loaded into memory from LoadFromFile()

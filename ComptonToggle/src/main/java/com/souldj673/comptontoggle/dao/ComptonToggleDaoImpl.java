@@ -20,6 +20,9 @@ import com.souldj673.comptontoggle.dto.RunningProcess;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -74,7 +77,8 @@ public class ComptonToggleDaoImpl implements ComptonToggleDao {
                 cherryPickedPieces[i] = piece;
             }
         }
-        RunningProcess currentProcess = new RunningProcess(cherryPickedPieces[3]);
+        RunningProcess currentProcess = new RunningProcess(cherryPickedPieces[3]
+                .toLowerCase());
         currentProcess.setPid(Integer.parseInt(cherryPickedPieces[0]));
         currentProcess.setTty(cherryPickedPieces[1]);
 
@@ -94,8 +98,19 @@ public class ComptonToggleDaoImpl implements ComptonToggleDao {
     }
 
     @Override
-    public void writeToFile() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void writeToFile(String command) throws IOException {
+        PrintWriter dump;
+        dump = new PrintWriter(new FileWriter("comptonStop"));
+        
+        String bashify = "#!/bin/bash";
+        
+        dump.println(bashify);
+        dump.flush();
+        
+        dump.println(command);
+        dump.flush();
+        
+        dump.close();
     }
 
 }
