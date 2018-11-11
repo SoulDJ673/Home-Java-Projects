@@ -20,6 +20,8 @@ import com.souldj673.comptontoggle.dto.RunningProcess;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -31,26 +33,59 @@ import java.util.Scanner;
 public class ComptonToggleDaoImpl implements ComptonToggleDao {
 
     Map<String, RunningProcess> processes = new HashMap<>();
+    private final String DELIMITER = " ";
 
     @Override
     public void loadFromFile() throws FileNotFoundException {
         Scanner scanner = new Scanner(new BufferedReader(
                 new FileReader("processes.log")));
-        
+
         String currentLine;
 
         while (scanner.hasNextLine()) {
             currentLine = scanner.nextLine();
             RunningProcess currentProcess = unmarshallProcess(currentLine);
+
+            /**
+             * Make sure different processes with the same names don't overwrite
+             * each other
+             */
+            int x = 1;
+            if (processes.containsKey(currentProcess.getCmd())) {
+                currentProcess.setCmd(currentProcess.getCmd() + x);
+                x++;
+            }
+
             processes.put(currentProcess.getCmd(), currentProcess);
-            
         }
+        scanner.close();
     }
-    
+
     private RunningProcess unmarshallProcess(String marshalledProcess) {
+        String[] pieces = marshalledProcess.split(DELIMITER);
+        String[] cherryPickedPieces = new String[4];
+
         /**
-         * 
+         * Check for empty Strings, remove
          */
+        int i = 0;
+        for (String piece : pieces) {
+            if (!piece.trim().isEmpty()) {
+                cherryPickedPieces[i] = piece;
+            }
+        }
+        RunningProcess currentProcess = new RunningProcess(cherryPickedPieces[3]);
+        currentProcess.setPid(Integer.parseInt(cherryPickedPieces[0]));
+        currentProcess.setTty(cherryPickedPieces[1]);
+
+        /**
+         * Convert String to DateTime
+         */
+        DateTimeFormatter simple = DateTimeFormatter.ofPattern("hh:mm:ss");
+        LocalDateTime runtime = LocalDateTime.parse(cherryPickedPieces[2], simple);
+        currentProcess.setTime(runtime);
+
+        return currentProcess;
     }
 
     @Override

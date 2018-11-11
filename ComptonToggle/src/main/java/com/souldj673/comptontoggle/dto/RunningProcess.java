@@ -35,6 +35,10 @@ public class RunningProcess {
     public RunningProcess() {
     }
 
+    public RunningProcess(String cmd) {
+        this.cmd = cmd;
+    }
+
     public RunningProcess(String cmd, String tty, LocalDateTime time, int pid) {
         this.cmd = cmd;
         this.tty = tty;

@@ -16,6 +16,7 @@
  */
 package com.souldj673.comptontoggle.dao;
 
+import com.souldj673.comptontoggle.dto.RunningProcess;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +42,8 @@ public interface ComptonToggleDao {
 
     /**
      * This will be used to read keys loaded into memory from LoadFromFile()
+     * @param cmd
+     * @return 
      */
     public RunningProcess readProcess(String cmd);
 }
