@@ -23,7 +23,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author souldj673
  */
-public class Process {
+public class RunningProcess {
 
     private String cmd;
     private String tty;
@@ -32,10 +32,10 @@ public class Process {
 
     DateTimeFormatter runtime = DateTimeFormatter.ofPattern("hh:mm:ss");
 
-    public Process() {
+    public RunningProcess() {
     }
 
-    public Process(String cmd, String tty, LocalDateTime time, int pid) {
+    public RunningProcess(String cmd, String tty, LocalDateTime time, int pid) {
         this.cmd = cmd;
         this.tty = tty;
         this.time = time;

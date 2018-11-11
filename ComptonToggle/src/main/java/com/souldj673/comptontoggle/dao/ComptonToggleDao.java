@@ -26,7 +26,7 @@ import java.util.Map;
  */
 public interface ComptonToggleDao {
 
-    Map<String, Process> processes = new HashMap<>();
+    Map<String, RunningProcess> processes = new HashMap<>();
 
     /**
      * This will be used to load the process list into memory, stripping
@@ -42,5 +42,5 @@ public interface ComptonToggleDao {
     /**
      * This will be used to read keys loaded into memory from LoadFromFile()
      */
-    public Process readProcess(String cmd);
+    public RunningProcess readProcess(String cmd);
 }

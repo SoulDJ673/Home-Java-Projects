@@ -16,6 +16,7 @@
  */
 package com.souldj673.comptontoggle.dao;
 
+import com.souldj673.comptontoggle.dto.RunningProcess;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -29,27 +30,31 @@ import java.util.Scanner;
  */
 public class ComptonToggleDaoImpl implements ComptonToggleDao {
 
-    Map<String, Process> processes = new HashMap<>();
+    Map<String, RunningProcess> processes = new HashMap<>();
 
     @Override
     public void loadFromFile() throws FileNotFoundException {
         Scanner scanner = new Scanner(new BufferedReader(
                 new FileReader("processes.log")));
+        
+        String currentLine;
 
         while (scanner.hasNextLine()) {
-            String currentLine = scanner.nextLine();
+            currentLine = scanner.nextLine();
+            RunningProcess currentProcess = unmarshallProcess(currentLine);
+            processes.put(currentProcess.getCmd(), currentProcess);
             
         }
     }
     
-    private Process unmarshallProcess(String marshalledProcess) {
+    private RunningProcess unmarshallProcess(String marshalledProcess) {
         /**
          * 
          */
     }
 
     @Override
-    public Process readProcess(String cmd) {
+    public RunningProcess readProcess(String cmd) {
         return processes.get(cmd);
     }
 
