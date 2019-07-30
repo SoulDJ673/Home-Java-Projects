@@ -19,6 +19,7 @@ package com.souldj673.terminal_customization.textintro.service;
 import com.souldj673.terminal_customization.textintro.dao.TextIntroDAO;
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -46,6 +47,12 @@ public class TextIntroService {
 
     public String getAString(int i) {
         return dao.getAString(i);
+    }
+
+    public String getARandomString() {
+        Random entropy = new Random();
+        int limit = getStringList().size();
+        return dao.getAString(entropy.nextInt(limit));
     }
 
     private String getConcatenatedString() {

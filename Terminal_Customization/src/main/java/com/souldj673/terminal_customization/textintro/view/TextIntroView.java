@@ -28,23 +28,34 @@ public class TextIntroView {
     public void displayText(String text) {
         //Create border decor (customizable in the future)
         String decor = borderCreate();
+
+        //Separate text into displayable lines based from length
         List<String> tokens = new ArrayList<>();
         if (text.length() >= 72) {
             int i = 0;
+
+            division:
             do {
-                try {
-                    tokens.add(text.substring((i * 72), ((i + 1 * 71) + (i + 1 * 1))));
-                } catch (Exception e) {
-                    tokens.add(text.substring((i * 72), (text.length())));
+                if(i == 0) {
+                    tokens.add(text.substring(0, 72));
+                } else {
+                    try {
+                        try {
+                            tokens.add(text.substring(((i * 72) + 1), ((i + 1) * 72)));
+                        } catch(StringIndexOutOfBoundsException e) {
+                            tokens.add(text.substring((i * 72) + 1, text.length()));
+                        }
+                    } catch(Exception e) {
+                        break division;
+                    }
                 }
                 i++;
             } while (!tokens.get(i - 1).isEmpty());
         } else {
             tokens.add(text);
         }
-        String decorTrim = decor.substring(0, 80);
 
-        System.out.println(decorTrim);
+        System.out.println(decor);
         for (String currentLine : tokens) {
             if (currentLine.length() == 72) {
                 System.out.println(">>> " + currentLine + " >>>");
@@ -54,7 +65,7 @@ public class TextIntroView {
                 System.out.println(centerText(currentLine, 2));
             }
         }
-        System.out.println(decorTrim);
+        System.out.println(decor);
     }
 
     /*
@@ -79,6 +90,7 @@ public class TextIntroView {
     }
      */
     private String centerText(String token, int type) {
+        //Centers text based on whether the count of letters in the String is even/odd
         switch (type) {
         case 1:
             int space = ((72 / 2) - (token.length() / 2));

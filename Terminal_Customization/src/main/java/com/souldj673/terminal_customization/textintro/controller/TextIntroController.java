@@ -42,7 +42,7 @@ public class TextIntroController {
             view.fileError();
         }
 
-        view.displayText(service.getStrings());
+        view.displayText(service.getARandomString());
     }
 
 }
