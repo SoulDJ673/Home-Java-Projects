@@ -26,16 +26,19 @@ import java.util.List;
 public class TextIntroView {
 
     public void displayText(String text) {
-        String decor = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-                + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-                + ">>>>>>>>>>>>>>>>";
+        //Create border decor (customizable in the future)
+        String decor = borderCreate();
         List<String> tokens = new ArrayList<>();
         if (text.length() >= 72) {
             int i = 0;
             do {
-                tokens.add(text.substring((i * 72), ((i * 71) + (i * 1))));
+                try {
+                    tokens.add(text.substring((i * 72), ((i + 1 * 71) + (i + 1 * 1))));
+                } catch (Exception e) {
+                    tokens.add(text.substring((i * 72), (text.length())));
+                }
                 i++;
-            } while (!tokens.get(i).isEmpty());
+            } while (!tokens.get(i - 1).isEmpty());
         } else {
             tokens.add(text);
         }
@@ -53,9 +56,10 @@ public class TextIntroView {
         }
         System.out.println(decorTrim);
     }
-/*
+
+    /*
     Need to actually get working, but low priority because of lack of use currently
-    
+
     public void displayText(List<String> stringList) {
         String decor = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
                 + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
@@ -73,29 +77,38 @@ public class TextIntroView {
             }
         }
     }
-*/
+     */
     private String centerText(String token, int type) {
         switch (type) {
-            case 1:
-                int space = ((72 / 2) - (token.length() / 2));
-                String spaceS = "";
-                for (int i = 0; i < space; i++) {
-                    spaceS = spaceS + " ";
-                }
-                return new String(">>> " + spaceS + token + spaceS + " >>>");
-            case 2:
-                int space2 = ((72 / 2) - (token.length() / 2));
-                String space2S = "";
-                for (int i = 0; i < space2; i++) {
-                    space2S = space2S + " ";
-                }
-                return new String(">>> " + space2S + " " + token + space2S + " >>>");
-            default:
-                return token;
+        case 1:
+            int space = ((72 / 2) - (token.length() / 2));
+            String spaceS = "";
+            for (int i = 0; i < space; i++) {
+                spaceS = spaceS + " ";
+            }
+            return new String(">>> " + spaceS + token + spaceS + " >>>");
+        case 2:
+            int space2 = ((72 / 2) - (token.length() / 2) - 1);
+            String space2S = "";
+            for (int i = 0; i < space2; i++) {
+                space2S = space2S + " ";
+            }
+            return new String(">>> " + space2S + " " + token + space2S + " >>>");
+        default:
+            return token;
         }
     }
 
+    private String borderCreate() {
+        //This method just repeats a char 80 times and returns the resulting string.  Preparation for custom border.
+        String bruh = "";
+        for (int i = 0; i < 80 ; i++ ) {
+            bruh = bruh + ">";
+        }
+        return bruh;
+    }
+
     public void fileError() {
-        System.out.println("Check to ensure the existance of the text file");
+        System.out.println("Check to ensure the existence of the text file");
     }
 }
