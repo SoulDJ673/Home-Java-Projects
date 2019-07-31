@@ -37,14 +37,6 @@ public class TextIntroService {
         dao.loadAllStrings();
     }
 
-    public String getStrings() {
-        return getConcatenatedString();
-    }
-
-    public List<String> getStringList() {
-        return dao.getAllStrings();
-    }
-
     public String getAString(int i) {
         return dao.getAString(i);
     }
@@ -53,16 +45,5 @@ public class TextIntroService {
         Random entropy = new Random();
         int limit = getStringList().size();
         return dao.getAString(entropy.nextInt(limit));
-    }
-
-    private String getConcatenatedString() {
-        List<String> allStrings = dao.getAllStrings();
-
-        String concatString = "";
-        for (String currentToken : allStrings) {
-            concatString = concatString + currentToken;
-        }
-
-        return concatString;
     }
 }
