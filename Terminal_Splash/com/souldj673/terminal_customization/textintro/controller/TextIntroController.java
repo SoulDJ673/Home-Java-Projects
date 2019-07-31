@@ -34,15 +34,14 @@ public class TextIntroController {
         this.service = service;
     }
 
-    public void run() {
+    public void run(String[] args) {
 
         try {
             service.loadTextIntroFile();
         } catch (FileNotFoundException e) {
             view.fileError();
         }
-
-        view.displayText(service.getARandomString());
+        view.displayText(service.getARandomString(), service.extractBorderChar(args));
     }
 
 }

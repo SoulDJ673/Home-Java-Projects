@@ -34,6 +34,6 @@ public class TextIntroApp {
     private static final TextIntroController CONTROLLER = new TextIntroController(VIEW, SERVICE);
 
     public static void main(String[] args) {
-        CONTROLLER.run();
+        CONTROLLER.run(args);
     }
 }

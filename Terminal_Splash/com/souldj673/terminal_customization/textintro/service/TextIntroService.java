@@ -16,6 +16,7 @@
  */
 package com.souldj673.terminal_customization.textintro.service;
 
+import java.lang.StringIndexOutOfBoundsException;
 import com.souldj673.terminal_customization.textintro.dao.TextIntroDAO;
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -43,7 +44,28 @@ public class TextIntroService {
 
     public String getARandomString() {
         Random entropy = new Random();
-        int limit = getStringList().size();
+        int limit = dao.getAllStrings().size();
         return dao.getAString(entropy.nextInt(limit));
+    }
+
+    public char extractBorderChar(String[] args) {
+
+        // Make sure args isn't null or empty
+        if(args.length == 0 || args == null) {
+            return ">".charAt(0);
+        }
+        // Cycle through args to find --borderChar=, extract char
+        for(String arg : args) {
+            if(arg.contains("--borderChar=")) {
+                try {
+                    return arg.replace("--borderChar=", "").charAt(0);
+                } catch(StringIndexOutOfBoundsException e) {
+                    // This will happen when someone uses --borderChar= but doesn't specify a char
+                    return ">".charAt(0);
+                }
+            }
+        }
+        // Defaults to ">" if char isn't specified
+        return ">".charAt(0);
     }
 }
