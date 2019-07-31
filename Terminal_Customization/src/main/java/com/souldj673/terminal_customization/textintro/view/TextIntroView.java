@@ -41,9 +41,9 @@ public class TextIntroView {
                 } else {
                     try {
                         try {
-                            tokens.add(text.substring(((i * 72) + 1), ((i + 1) * 72)));
+                            tokens.add(text.substring((i * 72), ((i + 1) * 72)));
                         } catch(StringIndexOutOfBoundsException e) {
-                            tokens.add(text.substring((i * 72) + 1, text.length()));
+                            tokens.add(text.substring(i * 72, text.length()));
                         }
                     } catch(Exception e) {
                         break division;
