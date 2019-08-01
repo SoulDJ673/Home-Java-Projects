@@ -17,6 +17,7 @@
 package com.souldj673.terminal_customization.DateTime.controller;
 
 import com.souldj673.terminal_customization.DateTime.view.*;
+import com.souldj673.terminal_customization.DateTime.service.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -25,22 +26,17 @@ import java.time.format.DateTimeFormatter;
  * @author souldj673
  */
 public class DateTimeController {
-    
+
     DateTimeView view;
-    
-    public DateTimeController(DateTimeView view) {
+    DateTimeService service;
+
+    public DateTimeController(DateTimeView view, DateTimeService service) {
         this.view = view;
+        this.service = service;
     }
-    
-    public void run() {
-        String dateTime = getDateTime();
-        view.displayDateTime(dateTime);
-    }
-    
-    private String getDateTime() {
-        LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter simple = DateTimeFormatter.ofPattern("EEEE MMMM dd, yyyy");
-        
-        return dateTime.format(simple);
+
+    public void run(String[] args) {
+        String dateTime = service.getDateTime();
+        view.displayDateTime(dateTime, service.extractBorderChar(args));
     }
 }

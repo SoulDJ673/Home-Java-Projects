@@ -18,6 +18,7 @@ package com.souldj673.terminal_customization.DateTime;
 
 import com.souldj673.terminal_customization.DateTime.controller.DateTimeController;
 import com.souldj673.terminal_customization.DateTime.view.DateTimeView;
+import com.souldj673.terminal_customization.DateTime.service.DateTimeService;
 
 /**
  *
@@ -26,9 +27,10 @@ import com.souldj673.terminal_customization.DateTime.view.DateTimeView;
 public class DateTimeApp {
 
     private static final DateTimeView VIEW = new DateTimeView();
-    private static final DateTimeController CONTROLLER = new DateTimeController(VIEW);
+    private static final DateTimeService SERVICE = new DateTimeService();
+    private static final DateTimeController CONTROLLER = new DateTimeController(VIEW, SERVICE);
 
     public static void main(String[] args) {
-        CONTROLLER.run();
+        CONTROLLER.run(args);
     }
 }

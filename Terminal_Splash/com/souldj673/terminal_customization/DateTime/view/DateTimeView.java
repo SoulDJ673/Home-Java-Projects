@@ -22,17 +22,35 @@ package com.souldj673.terminal_customization.DateTime.view;
  */
 public class DateTimeView {
 
-    public void displayDateTime(String dateTime) {
-        banner(dateTime);
+    public void displayDateTime(String dateTime, char bannerBorder) {
+        banner(dateTime, Character.toString(bannerBorder));
     }
 
-    private void banner(String content) {
-        String decor = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-                + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
-        String decorTrim = decor.substring(0, (content.length() + 8));
+    private void banner(String content, String borderMaterial) {
+        // Create border from specified char
+        String border = "";
+        for (int i = 0; i < content.length() + 8 ; i++ ) {
+            border = border + borderMaterial;
+        }
 
-        System.out.println(decorTrim);
-        System.out.println(">>> " + content + " >>>");
-        System.out.println(decorTrim);
+        // Border sides
+        String borderLeft = "";
+        String borderRight = "";
+        for(int i = 0; i < 4; i++) {
+            if(i == 0) {
+                borderRight = borderRight + " ";
+                borderLeft = borderLeft + borderMaterial;
+            } else if(i == 3) {
+                borderLeft = borderLeft + " ";
+                borderRight = borderRight + borderMaterial;
+            } else {
+                borderRight = borderRight + borderMaterial;
+                borderLeft = borderLeft + borderMaterial;
+            }
+        }
+
+        System.out.println(border);
+        System.out.println(borderLeft + content + borderRight);
+        System.out.println(border);
     }
 }
